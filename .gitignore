@@ -1,2 +1,3 @@
 user.json
-bin
+bin/jq-32
+bin/jq-64
