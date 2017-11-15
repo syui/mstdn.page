@@ -8,7 +8,7 @@ git pull
 
 cd /root/
 mstdn.zsh -a
-mstdn.zsh status_backup $URL
+mstdn.zsh status_backup https://gitlab.com/syui/mstdn.page/raw/master/public/index.html
 mv /root/index.html /root/mstdn.page/public
 
 cd /root/mstdn.page
