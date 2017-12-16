@@ -3,6 +3,9 @@ sudo: required
 services:
   - docker
 
+env:
+  - TARGET_CONTAINER_ID=container-docker-arch
+
 script:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   - docker run -it $DOCKER_USERNAME/$DOCKER_REPO push.zsh;
