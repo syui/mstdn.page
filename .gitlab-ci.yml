@@ -1,11 +1,11 @@
-image: busybox
+image: node
 
 pages:
-  stage: deploy
   script:
-    - echo "Copying public dic..."
+  - npm i -S
+  - npm run build
   artifacts:
     paths:
-      - public
+    - public
   only:
     - master

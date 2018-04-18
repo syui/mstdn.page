@@ -1,22 +1,12 @@
-https://gitlab.com/syui/mstdn.zsh
+## Build Setup
 
-> user.json
+``` bash
+# install dependencies
+yarn install
 
-```json
-{
-	"host":"syui.ml",
-	"app":"mstdn.zsh",
-	"username":"$email",
-	"password":"$password",
-	"token":"$token"
-}
-```
+# serve with hot reload at localhost:8080
+yarn run dev
 
-https://stedolan.github.io/jq/download/
-
-> bin/jq-32,jq-64
-
-```sh
-$ sudo docker build -t syui/mstdn-page --build-arg TOKEN=`cat ./user.json|jq -r .token` .
-$ sudo docker run -it syui/mstdn-page push.zsh
+# build for production with minification
+yarn run build
 ```
