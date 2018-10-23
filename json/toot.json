@@ -281,17 +281,6 @@
       "avatar": "https://syui.gitlab.io/img/mastodon/accounts/avatars/000/000/001/original/0d907f0efe47e742.png"
     },
     "reblog": null,
-    "id": "99004373799355141",
-    "content": "<p><span class=\"h-card\"><a href=\"https://mastodon.zunda.ninja/@zundan\" class=\"u-url mention\">@<span>zundan</span></a></span> なるほど</p>",
-    "created_at": "2017-11-25より以前"
-  },
-  {
-    "account": {
-      "acct": "syui@syui.ml",
-      "url": "https://syui.ml/@syui",
-      "avatar": "https://syui.gitlab.io/img/mastodon/accounts/avatars/000/000/001/original/0d907f0efe47e742.png"
-    },
-    "reblog": null,
     "id": "99004325402560005",
     "content": "<p><span class=\"h-card\"><a href=\"http://syui.ml/@syui\" class=\"u-url mention\">@<span>syui</span></a></span> 完全にこちらの設定の問題でした</p>",
     "created_at": "2017-11-25より以前"
