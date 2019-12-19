@@ -1,9 +1,6 @@
 name: mastodon tweet
 
 on:
-  push:
-    branches:
-      - master
   schedule:
     - cron:  '0 0 * * *'
 
@@ -15,37 +12,4 @@ jobs:
     - run: |
         export GOPATH=$HOME/go
         export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-        go get -v github.com/syui/xq
-        url=${{ secrets.WEBHOOK_URL }}
-        url_arch="https://www.archlinux.org/feeds/news/"
-        url_archjp="https://www.archlinux.jp/feeds/news.xml"
-        xml=index.xml
-        xmljp=news.xml
-        curl -sL $url_arch -o $xml
-        curl -sLO $url_archjp
-        date_now=`date +"%Y%m%d"`
-        date_xml=`date --date="$(xq l $xml)" +"%Y%m%d"`;
-        echo check $date_xml $date_now
-        # date_xml=$date_now #test
-        if [ "$date_now" != "$date_xml" ];then
-            echo no news;
-            exit;
-        fi
-
-        link=`xq i $xml|jq -r ".[0].link"`
-        link=${link%*/}
-        # jp check
-        linkjp=`xq i $xmljp|jq -r ".[0].link"`
-        linkjp=${linkjp%*/}
-        if [ "${link##*/}" = "${linkjp##*/}" ];then
-            echo updated jp;
-            curl -sL -X POST --data-urlencode "payload={\"channel\": \"#general\" , \"username\": \"webhookbot\" , \"text\": \"${linkjp}\" , \"icon_emoji\": \":archjp:\"}" ${{ secrets.WEBHOOK_SLACK }}
-            exit;
-        fi
-        # translate
-        title=`xq i $xml|jq -r ".[0]|.title"`
-        body=`xq i $xml|jq -r ".[0]|.description"|tr -d '\n'`
-        echo $title, $body
-        title_ja=`curl -L -d "{\"txt\":\"$title\"}" $url`
-        body_ja=`curl -L -d "{\"txt\":\"$body\"}" $url`
-        curl -sL -X POST --data-urlencode "payload={\"channel\": \"#general\" , \"username\": \"webhookbot\" , \"text\": \"${link}\n${title}\n${body}\n${title_ja}\n${body_ja}\" , \"icon_emoji\": \":arch:\"}" ${{ secrets.WEBHOOK_SLACK }}
+        go get -v github.com/syui/twg
