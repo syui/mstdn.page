@@ -19,8 +19,7 @@ jobs:
         curl -sL https://github.com/syui/twg/releases/download/0.3/linux_amd64_twg -o twg
         chmod +x twg
         mkdir -p ~/.config/twg
-        cat .config/twg/user.json| jq ".|=. + {\"Token\":\"${{ secrets.TWITTER_TOKEN }}\",\"Secret\":\"${{ secrets.TWITTER_SECRET }}\"}" > t
-        mv t ~/.config/twg/user.json
+        cat .config/twg/user.json| jq ".|=. + {\"Token\":\"${{ secrets.TWITTER_TOKEN }}\",\"Secret\":\"${{ secrets.TWITTER_SECRET }}\"}" > ~/.config/twg/user.json
         url=https://mstdn.syui.cf/api/v1
         j=mastodon.json
         user_id=1
@@ -35,9 +34,9 @@ jobs:
         now=`date +%s -d "$job_time minutes ago"`
         for (( i=1;i<=`echo $date|wc -l`;i++ ))
         do
-                date_t=`echo "$date"|awk "NR==${i}"`
+                date_t=`echo "$date"|sed -n ${i}p`
                 date_t=`date --date="$date_t" +%s`
-                post_t=`echo "$post"|awk "NR==${i}"`
+                post_t=`echo "$post"|awk "NR==$i"`
                 if [ "$date_t" -gt "$now" ];then
                         echo $post_t
                         ./twg p "$post_t"
