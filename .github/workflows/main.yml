@@ -33,7 +33,7 @@ jobs:
         fi
         date=`cat $j|jq -r ".[]|select(.tags != [])|select(.tags|.[].name == \"twitter\")|.created_at"`
         now=`date +%s -d "$job_time minutes ago"`
-        for (( i=1;i<=`echo $date|wc -l`;i++ ))
+        for (( i=1;i<=`echo "$date"|wc -l`;i++ ))
         do
                 date_t=`echo "$date"|awk "NR==${i}"`
                 date_t=`date --date="$date_t" +%s`
